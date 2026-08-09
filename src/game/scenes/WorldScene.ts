@@ -27,8 +27,8 @@ const HUB_RETURN_POS_KEY = "hubReturnPos";
 
 export class WorldScene extends Phaser.Scene {
   private player!: Player;
-  private currentZone: ProximityZone<ZoneDef> | null = null;
-  private zones: ProximityZone<ZoneDef>[] = [];
+  private currentZone: ProximityZone<ZoneDef, ZoneDef["id"]> | null = null;
+  private zones: ProximityZone<ZoneDef, ZoneDef["id"]>[] = [];
   private eKey!: Phaser.Input.Keyboard.Key;
   private controlsEnabled = true;
   private signTexts: Phaser.GameObjects.Text[] = [];
