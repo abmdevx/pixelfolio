@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-pixel: "Courier New", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --font-body: "Courier New", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+
+* {
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+}
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+  background: #120f16;
+}
+
+body {
+  font-family: var(--font-body);
+  color: #f4ecd8;
+}
+
+/* Pixel-styled scrollbar for panel content */
+.pixel-scroll::-webkit-scrollbar {
+  width: 10px;
+}
+.pixel-scroll::-webkit-scrollbar-track {
+  background: #241d30;
+}
+.pixel-scroll::-webkit-scrollbar-thumb {
+  background: #6b5a80;
+  border: 2px solid #241d30;
+}
+
+/* Crisp pixel border trick: stacked box-shadows instead of border-radius blur */
+.pixel-border {
+  box-shadow:
+    0 0 0 2px #120f16,
+    0 0 0 6px #e8a33d,
+    6px 6px 0 0 rgba(0, 0, 0, 0.55);
+}
+
+.pixel-border-thin {
+  box-shadow:
+    0 0 0 2px #120f16,
+    0 0 0 4px #6b5a80;
+}
+
+.text-shadow-pixel {
+  text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.7);
+}
+
+canvas {
+  display: block;
+}
