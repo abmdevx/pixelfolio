@@ -5,6 +5,9 @@ export const metadata: Metadata = {
   title: "Abdullah — Pixel Portfolio",
   description:
     "An explorable pixel-art world. Walk around, find the five landmarks, and discover the portfolio behind each one.",
+  icons: {
+    icon: "/assets/tiny-dungeon/tile_0108.png",
+  },
 };
 
 export const viewport: Viewport = {
