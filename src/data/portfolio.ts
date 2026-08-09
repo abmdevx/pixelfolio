@@ -137,21 +137,27 @@ export interface ExperienceEntry {
 
 export const experienceContent: ExperienceEntry[] = [
   {
-    role: "Software Developer",
-    company: "Company Name",
-    period: "2023 — Present",
+    role: "Mobile Application Developer",
+    company: "WriteO",
+    period: "Jul 2026 — Present",
     points: [
-      "Placeholder responsibility or achievement — replace with a real highlight.",
-      "Another line describing impact, scale, or a specific feature shipped.",
+      "Developing cross-platform apps with React Native.",
+      "Building reusable and responsive UI components.",
+      "Integrating APIs and developing new features.",
+      "Debugging issues and improving app performance.",
+      "Collaborating with the development team.",
     ],
   },
   {
-    role: "Junior Developer",
-    company: "Previous Company",
-    period: "2021 — 2023",
+    role: "Sales Agent",
+    company: "Swift Trucx",
+    period: "Mar 2026 — Present",
     points: [
-      "Placeholder line about what you built or learned in this role.",
-      "A second bullet with a concrete result or metric.",
+      "Managed outbound sales and driver outreach.",
+      "Identified opportunities for logistics services.",
+      "Maintained professional client relationships.",
+      "Handled high-volume outbound calls.",
+      "Supported load coordination with the dispatch team.",
     ],
   },
 ];
