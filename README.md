@@ -1,63 +1,110 @@
-# Pixel Portfolio — an explorable Tiny Dungeon world
+# Pixel Portfolio
 
-A developer portfolio you walk around instead of scroll through, built with
-**Next.js (App Router) + TypeScript + Tailwind CSS** for the UI shell and
-**Phaser 3** for the interactive pixel-art world. All visuals come from
-Kenney's free "Tiny Dungeon" tileset (`public/assets/tiny-dungeon/tiles.png`,
-CC0 — see `LICENSE.txt` next to it) — no other art was added.
+An explorable pixel-art portfolio built by **Abdullah Butt**. Instead of
+scrolling through a conventional portfolio, walk through a Tiny Dungeon world
+and discover each section in context.
 
-## Run it
+The project combines **Next.js (App Router)**, **React**, **TypeScript**,
+**Tailwind CSS**, and **Phaser 3**. React renders the portfolio content and
+overlays; Phaser handles the playable world, movement, collisions, camera,
+scene transitions, and in-world interactions.
+
+## Features
+
+- A playable hub world with five portfolio locations: About Me, Skills,
+	Projects, Experience, and Contact
+- Dedicated Projects and Contact dungeon scenes with NPC, prop, chest, and
+	dialogue interactions
+- React portfolio panels for About Me, Skills, and Experience
+- Project detail cards and external links for GitHub projects
+- Keyboard controls plus automatic touch controls for mobile devices
+- Client-only Phaser loading with a loading state for the Next.js app
+- Centralized portfolio content that can be changed without editing game logic
+
+## Getting started
+
+### Requirements
+
+- Node.js 20 or newer
+- npm
+
+### Development
 
 ```bash
 npm install
 npm run dev
 ```
 
-Open http://localhost:3000. Move with **WASD** or the **arrow keys**; on
-touch devices a D-pad + interact button appear automatically. Walk up to any
-of the five glowing shrines, and press **E** (or tap the on-screen E button)
-to open that section.
+Open [http://localhost:3000](http://localhost:3000) in a browser.
+
+### Production
 
 ```bash
-npm run build && npm run start   # production build
+npm run build
+npm run start
 ```
 
-## Make it yours
+The available npm scripts are:
 
-Everything you'd actually want to edit lives in **`src/data/portfolio.ts`** —
-name, bio, skills, projects, experience, and contact links are all plain
-data, separate from the game/UI code. Edit that one file and the panels
-update automatically.
+| Script | Purpose |
+| --- | --- |
+| `npm run dev` | Start the Next.js development server |
+| `npm run build` | Create a production build |
+| `npm run start` | Serve the production build |
+| `npm run lint` | Run the configured Next.js lint command |
 
-Want to reshape the world itself (room placement, decorations, which NPC
-stands where)? Edit `src/game/config/mapData.ts` — it's a plain set of 2D
-tile arrays plus a list of entities/zones, generated once from a small
-Python layout script and then hand-tuned. Tile indices refer to
-`public/assets/tiny-dungeon/tiles.png`, a 12×11 grid of 16×16 tiles.
+## Controls
+
+| Action | Keyboard | Touch |
+| --- | --- | --- |
+| Move | `W` `A` `S` `D` or arrow keys | On-screen D-pad |
+| Interact | `E` when near a landmark or character | On-screen interact button |
+| Close a panel or dialogue | `Esc` | Close button |
+
+Walk toward a landmark until the interaction prompt appears. The About Me,
+Skills, and Experience landmarks open React panels. Projects and Contact move
+you into their dedicated dungeon scenes, where nearby characters and objects
+open dialogue choices.
+
+## Customization
+
+Most personal content lives in [`src/data/portfolio.ts`](src/data/portfolio.ts):
+
+- `aboutContent` controls the name, role, bio, tagline, and technologies
+- `skillsContent` controls the grouped skills and their icon keys
+- `projectsContent` controls project descriptions, technologies, and links
+- `experienceContent` controls roles, companies, dates, and achievements
+- `contactContent` controls email and social links
+- Dialogue content and location labels are also defined in this file
+
+To reshape the playable world, edit [`src/game/config/mapData.ts`](src/game/config/mapData.ts)
+and the scene-specific map data files. Tile indices refer to the 12×11 grid of
+16×16 tiles in `public/assets/tiny-dungeon/tiles.png`.
 
 ## Project structure
 
 ```
 src/
-├── app/                  Next.js App Router entry (page.tsx wires game <-> UI)
+├── app/                    Next.js App Router entry and global styles
 ├── components/
-│   ├── game/PhaserGame.tsx     client-only mount point for the Phaser canvas
-│   ├── portfolio/*Panel.tsx    the five React content panels + shared shell
-│   └── ui/                     "[E] Interact" prompt, mobile D-pad
-├── game/
-│   ├── main.ts                Phaser.Game config
-│   ├── scenes/WorldScene.ts   tilemap build, collisions, camera, zones
-│   ├── entities/Player.ts     movement + procedural idle/walk animation
-│   ├── systems/events.ts      tiny event bus connecting Phaser <-> React
-│   └── config/                map data + tile/asset key constants
-└── data/portfolio.ts     <- all your actual content lives here
+│   ├── game/               Phaser mount point and dialogue UI
+│   ├── portfolio/          React portfolio panels and project details
+│   └── ui/                 Loader, interaction prompt, and mobile controls
+├── data/portfolio.ts       Editable portfolio and dialogue content
+└── game/
+	├── main.ts             Phaser.Game configuration
+	├── scenes/             Hub and dedicated dungeon scenes
+	├── entities/           Player movement and animation
+	├── systems/            Events, proximity, camera, and transitions
+	└── config/              Maps, asset keys, and dungeon data
 ```
 
-## Notes on the assets
+## Assets and licensing
 
-The Tiny Dungeon pack ships static single-frame characters (no walk-cycle
-sprite strips), so the player's "walking" and "idle" motion is done
-procedurally — a squash/stretch bob plus a left/right flip — rather than
-frame-by-frame animation. Everything else (floors, walls, doors, props,
-NPC sprites, the circular shrine motif marking each of the five sections)
-is combined directly from the provided tileset.
+The world uses Kenney's free **Tiny Dungeon** tileset from
+`public/assets/tiny-dungeon/`. Its license is included in
+[`public/assets/tiny-dungeon/LICENSE.txt`](public/assets/tiny-dungeon/LICENSE.txt).
+
+The pack contains static single-frame characters rather than walk-cycle sprite
+strips, so player idle and walking motion is produced procedurally with a
+squash/stretch bob and horizontal flipping.
