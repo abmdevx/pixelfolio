@@ -103,7 +103,7 @@ src/
 
 The world uses Kenney's free **Tiny Dungeon** tileset from
 `public/assets/tiny-dungeon/`. Its license is included in
-[`public/assets/tiny-dungeon/LICENSE.txt`](public/assets/tiny-dungeon/LICENSE.txt).
+[`public/assets/tiny-dungeon/LICENSE.txt`](public/assets/tiny-dungeon/LICENSE).
 
 The pack contains static single-frame characters rather than walk-cycle sprite
 strips, so player idle and walking motion is produced procedurally with a
