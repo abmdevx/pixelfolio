@@ -29,8 +29,6 @@ transitions, and in-world interactions.
 The central village connects every portfolio section. Walk to a shrine and
 press `E` to explore it.
 
-![Hub world with five portfolio shrines](public/overview.png)
-
 ### About Me
 
 ![About Me shrine](public/about.png)
