@@ -1,25 +1,58 @@
-# Pixel Portfolio
+# Pixelfolio
 
-An explorable pixel-art portfolio built by **Abdullah Butt**. Instead of
-scrolling through a conventional portfolio, walk through a Tiny Dungeon world
-and discover each section in context.
+![Pixelfolio](public/overview.png)
 
-The project combines **Next.js (App Router)**, **React**, **TypeScript**,
-**Tailwind CSS**, and **Phaser 3**. React renders the portfolio content and
-overlays; Phaser handles the playable world, movement, collisions, camera,
-scene transitions, and in-world interactions.
+An explorable pixel-art portfolio by **Abdullah**. Instead of scrolling
+through a conventional portfolio, walk through a Tiny Dungeon world, find the
+five shrines, and discover each section in context.
 
-## Features
+Built with **Next.js**, **React**, **TypeScript**, **Tailwind CSS**, and
+**Phaser 3**. React renders the portfolio panels and dialogue overlays, while
+Phaser powers the playable world, movement, collisions, camera, scene
+transitions, and in-world interactions.
 
-- A playable hub world with five portfolio locations: About Me, Skills,
-	Projects, Experience, and Contact
-- Dedicated Projects and Contact dungeon scenes with NPC, prop, chest, and
-	dialogue interactions
-- React portfolio panels for About Me, Skills, and Experience
-- Project detail cards and external links for GitHub projects
-- Keyboard controls plus automatic touch controls for mobile devices
-- Client-only Phaser loading with a loading state for the Next.js app
-- Centralized portfolio content that can be changed without editing game logic
+## What is inside
+
+- A playable hub with five destinations: About Me, Skills, Projects,
+  Experience, and Contact
+- Dedicated Treasure Vault and Contact dungeon scenes
+- NPC, shrine, chest, prop, and dialogue interactions
+- Project detail cards with links to GitHub repositories
+- Keyboard controls on desktop and an on-screen D-pad for touch devices
+- Responsive portfolio overlays that work across desktop and mobile
+- Centralized portfolio content that can be edited without changing game logic
+
+## Screenshots
+
+### The hub world
+
+The central village connects every portfolio section. Walk to a shrine and
+press `E` to explore it.
+
+![Hub world with five portfolio shrines](public/overview.png)
+
+### About Me
+
+![About Me shrine](public/about.png)
+
+### Skills
+
+![Skills shrine](public/skills.png)
+
+### Projects
+
+The Projects shrine leads to the Treasure Vault, where each chest represents a
+project and opens its details and repository link.
+
+![Projects shrine and treasure vault](public/projects.png)
+
+### Experience
+
+![Experience shrine](public/experience.png)
+
+### Contact
+
+![Contact shrine](public/contact.png)
 
 ## Getting started
 
@@ -28,7 +61,7 @@ scene transitions, and in-world interactions.
 - Node.js 20 or newer
 - npm
 
-### Development
+### Run locally
 
 ```bash
 npm install
@@ -37,14 +70,12 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) in a browser.
 
-### Production
+### Production build
 
 ```bash
 npm run build
 npm run start
 ```
-
-The available npm scripts are:
 
 | Script | Purpose |
 | --- | --- |
@@ -58,32 +89,32 @@ The available npm scripts are:
 | Action | Keyboard | Touch |
 | --- | --- | --- |
 | Move | `W` `A` `S` `D` or arrow keys | On-screen D-pad |
-| Interact | `E` when near a landmark or character | On-screen interact button |
+| Interact | `E` near a shrine, NPC, or object | On-screen interact button |
+| Advance dialogue | `E` or click a dialogue choice | Tap the dialogue choice |
 | Close a panel or dialogue | `Esc` | Close button |
 
-Walk toward a landmark until the interaction prompt appears. The About Me,
-Skills, and Experience landmarks open React panels. Projects and Contact move
-you into their dedicated dungeon scenes, where nearby characters and objects
-open dialogue choices.
+The About Me, Skills, and Experience shrines open React panels. Projects and
+Contact lead to dedicated dungeon scenes, where nearby characters and objects
+open dialogue choices. On mobile, touch controls appear automatically.
 
 ## Customization
 
-Most personal content lives in [`src/data/portfolio.ts`](src/data/portfolio.ts):
+Most portfolio content lives in [`src/data/portfolio.ts`](src/data/portfolio.ts):
 
-- `aboutContent` controls the name, role, bio, tagline, and technologies
-- `skillsContent` controls the grouped skills and their icon keys
-- `projectsContent` controls project descriptions, technologies, and links
-- `experienceContent` controls roles, companies, dates, and achievements
-- `contactContent` controls email and social links
-- Dialogue content and location labels are also defined in this file
+- `aboutContent`: name, role, bio, tagline, and technologies
+- `skillsContent`: skill groups and icon keys
+- `projectsContent`: project descriptions, technologies, and links
+- `experienceContent`: roles, companies, dates, and achievements
+- `contactContent`: email and social links
+- Dialogue scripts and location labels
 
 To reshape the playable world, edit [`src/game/config/mapData.ts`](src/game/config/mapData.ts)
-and the scene-specific map data files. Tile indices refer to the 12×11 grid of
-16×16 tiles in `public/assets/tiny-dungeon/tiles.png`.
+and the scene-specific map data files. Tile indices refer to the 12 x 11 grid
+of 16 x 16 tiles in [`public/assets/tiny-dungeon/tiles.png`](public/assets/tiny-dungeon/tiles.png).
 
 ## Project structure
 
-```
+```text
 src/
 ├── app/                    Next.js App Router entry and global styles
 ├── components/
@@ -92,19 +123,22 @@ src/
 │   └── ui/                 Loader, interaction prompt, and mobile controls
 ├── data/portfolio.ts       Editable portfolio and dialogue content
 └── game/
-	├── main.ts             Phaser.Game configuration
-	├── scenes/             Hub and dedicated dungeon scenes
-	├── entities/           Player movement and animation
-	├── systems/            Events, proximity, camera, and transitions
-	└── config/              Maps, asset keys, and dungeon data
+    ├── main.ts             Phaser.Game configuration
+    ├── scenes/             Hub and dedicated dungeon scenes
+    ├── entities/           Player movement and animation
+    ├── systems/            Events, proximity, camera, and transitions
+    └── config/              Maps, asset keys, and dungeon data
 ```
 
 ## Assets and licensing
 
-The world uses Kenney's free **Tiny Dungeon** tileset from
-`public/assets/tiny-dungeon/`. Its license is included in
-[`public/assets/tiny-dungeon/LICENSE.txt`](public/assets/tiny-dungeon/LICENSE).
+The world uses Kenney's free **Tiny Dungeon** tileset. The complete tile sheet
+is available at [`public/assets/tiny-dungeon/tiles.png`](public/assets/tiny-dungeon/tiles.png),
+and its **CC0** license is included in
+[`public/assets/tiny-dungeon/LICENSE`](public/assets/tiny-dungeon/LICENSE).
+
+![Tiny Dungeon tilesheet](public/assets/tiny-dungeon/tiles.png)
 
 The pack contains static single-frame characters rather than walk-cycle sprite
-strips, so player idle and walking motion is produced procedurally with a
-squash/stretch bob and horizontal flipping.
+strips, so player movement uses a procedural squash-and-stretch bob and
+horizontal flipping.
