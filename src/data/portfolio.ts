@@ -124,7 +124,7 @@ export const projectsContent: Project[] = [
     description:
       "A real-time collaborative drawing board for multi-user brainstorming and idea sharing, with live sync over WebSockets and interactive sketching on HTML Canvas.",
     technologies: ["React", "Tailwind CSS", "Node.js", "Express.js", "Socket.IO", "Canvas API"],
-    githubUrl: "https://github.com/abmdevx/collab-whiteboard",
+    githubUrl: "https://github.com/abmdevx/collabboard",
   },
 ];
 
